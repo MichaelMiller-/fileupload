@@ -9,7 +9,7 @@ const compression = require('compression')
 // based on: https://attacomsian.com/blog/uploading-files-nodejs-express
 
 const port = process.env.PORT || 4000;
-const uploadDirectory = process.env.UPLOAD_DIRECTORY || "./uploads/";
+const uploadDirectory = process.env.UPLOAD_DIRECTORY || "/tmp/";
 
 const app = express();
 

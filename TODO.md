@@ -1,0 +1,2 @@
+- [ ] ensure that environment file is loaded
+- [ ] https://expressjs.com/en/advanced/best-practice-performance.html
