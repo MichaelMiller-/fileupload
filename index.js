@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 // const _ = require('lodash');
 const compression = require('compression')
+const disk = require('diskusage');
 
 // based on: https://attacomsian.com/blog/uploading-files-nodejs-express
 
@@ -50,6 +51,27 @@ app.post('/fileupload', async (req, res) => {
         res.status(500).send(err);
     }
 });
+
+app.get('/health', async (req, res) => {
+
+    const data = {
+        uptime: process.uptime(),
+        message: 'OK',
+        timestamp: Date.now(),
+        disk: disk.checkSync(uploadDirectory)
+    };
+
+    try {
+        res.status(200).send(data);
+    } catch (error) {
+        data.message = error;
+        res.status(503).send();
+    }
+})
+
+app.get('/echo', async (req, res) => {
+    res.status(200).send('fileupload 1.0');
+})
 
 app.listen(port, () =>
     //! \todo synchronise call, only run in debug mode
