@@ -7,6 +7,9 @@ const morgan = require('morgan');
 const compression = require('compression')
 const disk = require('diskusage');
 
+//! \todo remove if node version > 20
+require("dotenv").config();
+
 // based on: https://attacomsian.com/blog/uploading-files-nodejs-express
 
 const port = process.env.PORT || 4000;
